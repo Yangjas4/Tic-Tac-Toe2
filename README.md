@@ -1,3 +1,7 @@
+# Firebase
+
+This project is deployed at https://yangjas4-tictactoe.web.app/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
