@@ -1,13 +1,23 @@
 import React from 'react';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import Homepage from './pages/Homepage';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+//aoisdjaoidsjio
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import HomeContent from './pages/HomeContent';
 
 export default function App(){
     return (
-        <BrowserRouter >
-                <Route to="/" element={Homepage} />
-                <Route to="/" element={Homepage} />
-                <Route to="/" element={Homepage} />
-        </BrowserRouter>
+    <Router>
+        <div className="app">
+            <div className="margin">
+                <Navbar />
+                <Routes>
+                    <Route path="/" element={<HomeContent />}/>
+                </Routes>
+            </div>
+            <Footer />
+        </div>
+    </Router>
     )
 }
