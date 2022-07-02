@@ -15,7 +15,7 @@ export default function HomeContent() {
                 </div>
             </div>
             <div className="showcase-video">
-                <iframe src="https://www.youtube.com/embed/kRRWYumBHJA" allowFullScreen>
+                <iframe title="tictactoe demo" src="https://www.youtube.com/embed/kRRWYumBHJA" allowFullScreen>
                     <source />
                     No video available
                 </iframe>
