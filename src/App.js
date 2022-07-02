@@ -1,23 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Homepage from './pages/Homepage';
 
 //aoisdjaoidsjio
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import HomeContent from './pages/HomeContent';
+
 
 export default function App(){
     return (
     <Router>
-        <div className="app">
-            <div className="margin">
-                <Navbar />
-                <Routes>
-                    <Route path="/" element={<HomeContent />}/>
-                </Routes>
-            </div>
-            <Footer />
-        </div>
+        <Routes>
+            <Route path="/" element={<Homepage />}/>
+            <Route path="/singleplayer" element="" />
+        </Routes>
     </Router>
     )
 }
