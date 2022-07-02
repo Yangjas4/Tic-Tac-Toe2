@@ -199,5 +199,14 @@ footer {
     color: #5A44E4;
 }
 
+.nav-underline {
+    font-weight: 700;
+    padding-bottom: 5px;
+    border-bottom: 3px solid #492CFF; 
+    padding-left: 2px;
+    margin-left: -2px;
+    margin-right: -2px;
+    padding-right: 2px;
+}
 
 
