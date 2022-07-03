@@ -34,7 +34,6 @@ nav {
 }
 
 nav > img {
-    margin-right: 50px;
     cursor: pointer;
 }
 
@@ -197,11 +196,10 @@ footer {
 .play-button:hover {
     background-color: #FFFFFF;
     color: #5A44E4;
+
 }
 
 .nav-underline {
-    font-weight: 700;
-    padding-bottom: 5px;
     border-bottom: 3px solid #492CFF; 
     padding-left: 2px;
     margin-left: -2px;
@@ -209,4 +207,38 @@ footer {
     padding-right: 2px;
 }
 
+ul > a {
+    color: white;
+    text-decoration: none;
+    padding-bottom: 5px;
+}
 
+ul > a:hover {
+    color:#D8D8D8;
+}
+
+.logo-pos-fix {
+    border-bottom: 3px solid black; 
+    padding-left: 2px;
+    margin-left: -2px;
+    margin-right: -2px;
+    padding-right: 2px;
+}
+
+.nav-logo {
+    margin-right: 50px;
+}
+
+.play-button > a {
+    color: white;
+    text-decoration: none;
+    padding-top: 33.333%;
+    padding-bottom: 33.333%;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+.play-button > a:hover {
+    color: #5A44E4;
+    text-decoration: none;
+}
