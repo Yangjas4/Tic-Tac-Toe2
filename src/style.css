@@ -242,3 +242,12 @@ ul > a:hover {
     color: #5A44E4;
     text-decoration: none;
 }
+
+.spotify-player {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #393939;
+    border-radius: 15px;
+    height: 60px;
+}
