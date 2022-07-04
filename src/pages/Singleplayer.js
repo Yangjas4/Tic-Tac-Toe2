@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import Gamesingle from '../components/Gamesingle';
+import GamesingleStart from '../components/GamesingleStart';
 import Spotify from '../components/Spotify';
 
 export default function Singleplayer() {
@@ -9,8 +9,8 @@ export default function Singleplayer() {
         <div className="app">
             <div className="margin">
                 <Navbar page="single"/>
-                <Gamesingle />
-                <Spotify />
+                <GamesingleStart />
+                {/* <Spotify /> */}
             </div>
             <Footer />
         </div>

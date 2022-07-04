@@ -243,11 +243,71 @@ ul > a:hover {
     text-decoration: none;
 }
 
-.spotify-player {
+/* .spotify-player {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #393939;
     border-radius: 15px;
     height: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 15px;
+    position: absolute;
+} */
+
+.game-single-start {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20vh;
+    align-items: center;
+}
+
+.game-title {
+    font-weight: 700;
+    font-size: clamp(40px, 4vw, 80px);
+    line-height: 100%;
+}
+
+.start-game {
+    width: 215px;
+    height: 55px;
+    border-radius: 6px;
+    background-color: #5A44E4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 18px;
+    margin-top: 40px;
+    cursor: pointer;
+}
+
+.start-game:hover {
+    background-color: #4B3AB1;
+}
+
+.rules {
+    font-weight: 500;
+    font-size: 18px;
+    text-decoration-line: underline;
+    margin-top: 25px;
+    cursor: pointer;
+}
+
+.rules-text {
+    display: flex;
+    width: 100%;
+}
+
+.rules-p {
+    max-width: 400px;
+    font-weight: 400;
+    font-size: 15px;
+    color: #B8B8B8;
+    text-decoration-line: underline;
+}
+
+.bold {
+    font-weight: 700;
 }
