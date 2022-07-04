@@ -10,7 +10,7 @@ export default function Singleplayer() {
             <div className="margin">
                 <Navbar page="multi"/>
                 <Gamemulti />
-                <Spotify />
+                {/* <Spotify /> */}
             </div>
             <Footer />
         </div>
