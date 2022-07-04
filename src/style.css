@@ -101,6 +101,10 @@ main {
     max-width: 600px
 }
 
+.blueNoTyping {
+    color: #5A45E4;
+}
+
 .blue {
     color: #5A45E4;
     position: relative;
@@ -264,6 +268,7 @@ ul > a:hover {
 }
 
 .game-title {
+    animation: 1s ease-out 0s 1 fadein;
     font-weight: 700;
     font-size: clamp(40px, 4vw, 80px);
     line-height: 100%;
@@ -311,3 +316,36 @@ ul > a:hover {
 .bold {
     font-weight: 700;
 }
+
+.rulestrans-enter {
+    opacity: 0;
+}
+
+.rulestrans-enter-active {
+    opacity: .5;
+}
+
+.rulestrans-enter-done {
+    opacity: 1;
+}
+
+.rulestrans-exit {
+    opacity: 1;
+}
+
+.rulestrans-exit-active {
+    opacity: .5;
+}
+
+.rulestrans-exit-done {
+    opacity: 0;
+}
+
+@keyframes fadein {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
