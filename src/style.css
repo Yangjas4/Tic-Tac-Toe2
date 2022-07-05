@@ -108,20 +108,8 @@ main {
 .blue {
     color: #5A45E4;
     position: relative;
-    animation: typing 8s steps(11) infinite;
     overflow: hidden;
 }
-
-@keyframes typing {
-    0%, 90%, 100% {
-        width: 0%;
-    }
-
-    30%, 60% {
-        width: 420px;
-    }
-}
-
 
 .blue::before {
     content: '';
@@ -324,4 +312,56 @@ ul > a:hover {
     100% {
       opacity: 1;
     }
+  }
+
+  .actual-game-single {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+
+  .gameboard {
+    position: absolute;
+    margin-top: 140px;
+  }
+
+  .winstreak-counter {
+    margin-top: 50px;
+    font-weight: 300;
+    font-size: 57px;
+    position: relative;
+    overflow: hidden;
+    width: 0;
+    animation: typing 1s steps(30, end) forwards;
+    white-space: nowrap;
+  }
+
+  .winstreak-counter::before {
+    content: '';
+    position:absolute;
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: white;
+    animation: blinkcursor 0.8s steps(3) infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 473.9px }
+  }
+  
+  .flipped {
+    transform-box: fill-box;
+    transform-origin: center;
+    transform: rotate(180deg);
+  }
+
+  .squares {
+    width: 390px;
+    height: 373px;
+    position: absolute;
+    margin-top: 140px;
   }
