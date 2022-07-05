@@ -288,16 +288,16 @@ ul > a:hover {
     cursor: pointer;
 }
 
-.start-game:hover {
-    background-color: #4B3AB1;
-}
-
 .rules {
     font-weight: 500;
     font-size: 18px;
     text-decoration-line: underline;
     margin-top: 25px;
     cursor: pointer;
+}
+
+.rules:hover { 
+    filter: brightness(75%)
 }
 
 .rules-text {
@@ -315,30 +315,6 @@ ul > a:hover {
 
 .bold {
     font-weight: 700;
-}
-
-.rulestrans-enter {
-    opacity: 0;
-}
-
-.rulestrans-enter-active {
-    opacity: .5;
-}
-
-.rulestrans-enter-done {
-    opacity: 1;
-}
-
-.rulestrans-exit {
-    opacity: 1;
-}
-
-.rulestrans-exit-active {
-    opacity: .5;
-}
-
-.rulestrans-exit-done {
-    opacity: 0;
 }
 
 @keyframes fadein {

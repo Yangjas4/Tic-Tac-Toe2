@@ -3,7 +3,6 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import GamesingleStart from '../components/GamesingleStart';
 import Spotify from '../components/Spotify';
-import { motion } from 'framer-motion';
 import Gamesingle from '../components/Gamesingle';
 
 export default function Singleplayer() {
