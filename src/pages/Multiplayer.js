@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import Gamemulti from '../components/GamesingleStart';
+import GamemultiStart from '../components/GamemultiStart';
 import Spotify from '../components/Spotify';
 
 export default function Singleplayer() {
@@ -9,7 +9,7 @@ export default function Singleplayer() {
         <div className="app">
             <div className="margin">
                 <Navbar page="multi"/>
-                <Gamemulti />
+                <GamemultiStart />
                 {/* <Spotify /> */}
             </div>
             <Footer />
