@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export default function GamesingleStart() {
+export default function GamesingleStart(props) {
 
     const [showRules, setShowRules] = useState(false);
     
@@ -14,7 +14,7 @@ export default function GamesingleStart() {
             <h1 className="game-title">
                 {">"} TIC_TAC_TOE <br/><span className="blueNoTyping">SINGLEPLAYER</span>
             </h1>
-            <div className="start-game">START GAME</div>
+            <div className="start-game" onClick={props.playgame}>START GAME</div>
             <h3 className="rules" onClick={toggleRules}>Rules</h3>
             <AnimatePresence>
                 {showRules && 
@@ -25,7 +25,7 @@ export default function GamesingleStart() {
                         initial={{opacity: 0}}
                         animate={{ opacity: 1}}
                         whileHover={{scale: 1.3}}
-                        className="rules-p"><span className="bold">Rules:</span> In this game, you
+                        className="rules-p"><span className="bold">Rules (Hover to Zoom in):</span> In this game, you
                     will take turns placing symbols on a 3 by 3 grid. When a player connects 3 of their 
                     symbols in any horizontal, vertical or diagonal line they will win the round. 
                     Play continuosly against the CPU until you lose or draw. Players with the highest 

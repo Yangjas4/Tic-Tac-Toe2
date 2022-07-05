@@ -1,6 +1,7 @@
 import React from 'react'
 import WebLogo from '../images/Logo.svg'
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 export default function Navbar(props) {
 
@@ -12,7 +13,12 @@ export default function Navbar(props) {
                 <Link to="/multiplayer" className={props.page === "multi" ? "nav-underline" : ""}>Multiplayer</Link>
                 <Link to="/leaderboards" className={props.page === "leaderboards" ? "nav-underline" : ""}>Leaderboards</Link>
             </ul>
-            <div className="weather-button">Weather</div>
+            <motion.div 
+                whileHover={{scale : 1.2}}
+                className="weather-button"
+                >
+                    Weather
+                </motion.div>
         </nav>
     )
 }
