@@ -8,7 +8,7 @@ export default function Singleplayer() {
     return (
         <div className="app">
             <div className="margin">
-                <Navbar page="multi"/>
+                <Navbar page="multi" />
                 <GamemultiStart />
                 {/* <Spotify /> */}
             </div>

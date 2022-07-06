@@ -1,8 +1,8 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 
 export default function GamesingleStart() {
     const [showRules, setShowRules] = useState(false);
-    
+
     function toggleRules() {
         setShowRules(prevShowRules => !prevShowRules);
     }
@@ -10,7 +10,7 @@ export default function GamesingleStart() {
     return (
         <div className="game-single-start">
             <h1 className="game-title">
-                {">"} TIC_TAC_TOE <br/><span className="blueNoTyping">MULTIPLAYER</span>
+                {">"} TIC_TAC_TOE <br /><span className="blueNoTyping">MULTIPLAYER</span>
             </h1>
             <div className="start-game">START GAME</div>
             <h3 className="rules" onClick={toggleRules}>Rules</h3>

@@ -7,7 +7,7 @@ export default function Homepage() {
     return (
         <div className="app">
             <div className="margin">
-                <Navbar page="home"/>
+                <Navbar page="home" />
                 <HomeContent />
             </div>
             <Footer />

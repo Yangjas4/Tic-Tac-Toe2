@@ -13,12 +13,12 @@ export default function Navbar(props) {
                 <Link to="/multiplayer" className={props.page === "multi" ? "nav-underline" : ""}>Multiplayer</Link>
                 <Link to="/leaderboards" className={props.page === "leaderboards" ? "nav-underline" : ""}>Leaderboards</Link>
             </ul>
-            <motion.div 
-                whileHover={{scale : 1.2}}
+            <motion.div
+                whileHover={{ scale: 1.2 }}
                 className="weather-button"
-                >
-                    Weather
-                </motion.div>
+            >
+                Weather
+            </motion.div>
         </nav>
     )
 }

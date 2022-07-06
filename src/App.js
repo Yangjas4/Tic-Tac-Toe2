@@ -6,14 +6,14 @@ import Multiplayer from './pages/Multiplayer';
 //aoisdjaoidsjio
 
 
-export default function App(){
+export default function App() {
     return (
-    <Router>
-        <Routes>
-            <Route path="/" element={<Homepage />}/>
-            <Route path="/singleplayer" element={<Singleplayer />} />
-            <Route path="/multiplayer" element={<Multiplayer />} />
-        </Routes>
-    </Router>
+        <Router>
+            <Routes>
+                <Route path="/" element={<Homepage />} />
+                <Route path="/singleplayer" element={<Singleplayer />} />
+                <Route path="/multiplayer" element={<Multiplayer />} />
+            </Routes>
+        </Router>
     )
 }

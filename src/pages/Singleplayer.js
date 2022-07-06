@@ -6,7 +6,7 @@ import Spotify from '../components/Spotify';
 import Gamesingle from '../components/Gamesingle';
 
 export default function Singleplayer() {
-    
+
     const [gameState, setGameState] = useState("startGame");
     console.log(gameState)
 
@@ -18,8 +18,8 @@ export default function Singleplayer() {
     return (
         <div className="app">
             <div className="margin">
-                <Navbar page="single"/>
-                {gameState === "startGame" && <GamesingleStart playgame={startGame}/>}
+                <Navbar page="single" />
+                {gameState === "startGame" && <GamesingleStart playgame={startGame} />}
                 {gameState === "playingGame" && <Gamesingle />}
                 {/* <Spotify /> */}
             </div>
