@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import Square from './Square';
 
 const topDown = {
     hidden: {
@@ -14,7 +15,6 @@ const topDown = {
         }
     }
 }
-
 const bottomUp = {
     hidden: {
         opacity: 0,
@@ -28,7 +28,6 @@ const bottomUp = {
         }
     }
 }
-
 const fadeIn = {
     hidden: {
         opacity: 0
@@ -41,8 +40,48 @@ const fadeIn = {
     }
 }
 
-
 export default function Gamesingle() {
+    let initSquares = [
+        {
+            id: 1,
+            gameState: ""
+        },
+        {
+            id: 2,
+            gameState: ""
+        },
+        {
+            id: 3,
+            gameState: ""
+        },
+        {
+            id: 4,
+            gameState: ""
+        },
+        {
+            id: 5,
+            gameState: ""
+        },
+        {
+            id: 6,
+            gameState: ""
+        },
+        {
+            id: 7,
+            gameState: ""
+        },
+        {
+            id: 8,
+            gameState: ""
+        },
+        {
+            id: 9,
+            gameState: ""
+        },
+        
+    ]
+    const [squaresArray, setSquaresArray] = useState(initSquares);
+    const squareElements = squaresArray.map(square => <Square id={squaresArray.id} gameState={squaresArray.gameState}/>)
 
     return (
         <div className="actual-game-single">
@@ -53,7 +92,9 @@ export default function Gamesingle() {
                 <motion.rect variants={fadeIn} initial="hidden" animate="visible" x="390" y="237" width="11" height="390" transform="rotate(90 384 237)" fill="#492CFF" />
                 <motion.rect variants={fadeIn} initial="hidden" animate="visible" x="390" y="107" width="11" height="390" transform="rotate(90 390 107)" fill="#492CFF" />
             </motion.svg>
-            <div className="squares"></div>
+            <div className="squares">
+                {squareElements}
+            </div>
         </div>
     )
 }
