@@ -43,6 +43,10 @@ const fadeIn = {
 export default function Gamesingle() {
     let initSquares = [
         {
+            id: 0,
+            gameState: ""
+        },   
+        {
             id: 1,
             gameState: ""
         },
@@ -73,13 +77,7 @@ export default function Gamesingle() {
         {
             id: 8,
             gameState: ""
-        },
-        {
-            id: 9,
-            gameState: ""
-        },
-        
-    ]
+        }]
     const [squaresArray, setSquaresArray] = useState(initSquares);
     const squareElements = squaresArray.map(square => <Square id={squaresArray.id} gameState={squaresArray.gameState}/>)
 
