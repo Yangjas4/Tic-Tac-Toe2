@@ -41,7 +41,7 @@ const fadeIn = {
 }
 
 export default function Gamesingle() {
-    let initSquares = [
+    const initSquares = [
         {
             id: 0,
             gameState: ""
@@ -79,11 +79,33 @@ export default function Gamesingle() {
             gameState: ""
         }]
     const [squaresArray, setSquaresArray] = useState(initSquares);
-    const squareElements = squaresArray.map(square => <Square id={squaresArray.id} gameState={squaresArray.gameState}/>)
+    let squareElements = squaresArray.map(square => <Square id={square.id} gameState={square.gameState} key={square.id} toggleSquare={toggleSquare}/>);
+    const [playerPieces, setPlayerPieces] = useState(randomizePlayer())
 
+    function randomizePlayer() {
+        const player = Math.floor(Math.random(2));
+        if (player === 0) {
+            return {
+                player: "o",
+                cpu: "x"
+            }
+        } else {
+            return {
+                player: "x",
+                cpu: "o"
+            }
+        }
+    }
+
+    function toggleSquare(id) {
+        console.log("hi")
+    }
+
+    console.log(squaresArray)
+    console.log(playerPieces)
     return (
         <div className="actual-game-single">
-            <h1 className="winstreak-counter"><span className="bold">Your</span> Winstreak: 0</h1>
+            <h1 className="winstreak-counter" onClick={toggleSquare} ><span className="bold">Your</span> Winstreak: 0</h1>
             <motion.svg className="gameboard" width="390" height="373" viewBox="0 0 390 373" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <motion.rect variants={topDown} initial="hidden" animate="visible" x="123" width="11" height="373" fill="#492CFF" />
                 <motion.rect variants={bottomUp} initial="hidden" animate="visible" x="257" width="11" height="373" fill="#492CFF" />

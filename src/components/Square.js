@@ -17,25 +17,20 @@ export default function Square(props) {
         }
     }
 
-    function setImage() {
-        if (props.gameState === "x") {
-            return (
-                <svg width="65" height="65" viewBox="0 0 65 65" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <motion.rect variants={svgAnim} initial="initial" animate="final" width="80.7013" height="10.6587" transform="matrix(0.703566 -0.71063 0.703566 0.71063 0.721924 57.3489)" fill="#5685FF" />
-                    <motion.rect variants={svgAnim} initial="initial" animate="final" width="80.7013" height="10.6587" transform="matrix(-0.703566 -0.71063 0.703566 -0.71063 56.7786 65)" fill="#5685FF" />
-                </svg>
-            )
-        } else if (props.gameState === "o") {
-            return (
-                <svg width="73" height="73" viewBox="0 0 73 73" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <motion.circle variants={svgAnim} initial="initial" animate="final" cx="36.5" cy="36.5" r="31.5" stroke="#E26161" stroke-width="9" />
-                </svg>
-            )
-        }
-        return " "
-    }
 
     return (
-        <div className="square">{setImage}</div>
+        <div
+            className="square"
+            id={props.id}
+            onClick={props.toggleSquare}
+        >
+            {props.gameState === "x" && <svg width="65" height="65" viewBox="0 0 65 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <motion.rect variants={svgAnim} initial="initial" animate="final" width="80.7013" height="10.6587" transform="matrix(0.703566 -0.71063 0.703566 0.71063 0.721924 57.3489)" fill="#5685FF" />
+                <motion.rect variants={svgAnim} initial="initial" animate="final" width="80.7013" height="10.6587" transform="matrix(-0.703566 -0.71063 0.703566 -0.71063 56.7786 65)" fill="#5685FF" />
+            </svg>}
+            {props.gameState === "o" && <svg width="73" height="73" viewBox="0 0 73 73" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <motion.circle variants={svgAnim} initial="initial" animate="final" cx="36.5" cy="36.5" r="31.5" stroke="#E26161" stroke-width="9" />
+            </svg>}
+        </div>
     )
 }
