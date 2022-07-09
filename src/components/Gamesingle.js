@@ -111,8 +111,9 @@ export default function Gamesingle() {
         } else {
             return
         }
-        setPlayerTurn(prevPlayerTurn => !prevPlayerTurn)
-        console.log(playerTurn)
+        setPlayerTurn(prevPlayerTurn => !prevPlayerTurn);
+        console.log(playerTurn);
+        checkWin();
     }
 
     setTimeout(() => {
@@ -128,6 +129,7 @@ export default function Gamesingle() {
             })
             setPlayerTurn(prevPlayerTurn => !prevPlayerTurn)
             console.log(playerTurn)
+            checkWin();
         }
     }, 3000)
 
@@ -212,7 +214,7 @@ export default function Gamesingle() {
                 setGameOver(true);
                 playerPieces.player === "o" ? setWinner("player") : setWinner("cpu");
                 break;
-            default: 
+            default:
                 return;
         }
     }
@@ -232,13 +234,13 @@ export default function Gamesingle() {
                 {squareElements}
             </div>
             <AnimatePresence>
-            {!playerTurn && <motion.div className="botStatus" exit={{ opacity: 0 }}>
-                <motion.p 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    whileHover={{ scale: 1.3 }}
-                    whileTap={{ scale: 1.3 }}>CPU is thinking</motion.p>
-            </motion.div>}
+                {!playerTurn && <motion.div className="botStatus" exit={{ opacity: 0 }}>
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        whileHover={{ scale: 1.3 }}
+                        whileTap={{ scale: 1.3 }}>CPU is thinking</motion.p>
+                </motion.div>}
             </AnimatePresence>
         </div>
     )

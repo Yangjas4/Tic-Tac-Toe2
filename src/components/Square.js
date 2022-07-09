@@ -12,7 +12,7 @@ export default function Square(props) {
             opacity: 1,
             pathLength: 1,
             transition: {
-                duration: 2
+                duration: 1.5
             }
         }
     }
