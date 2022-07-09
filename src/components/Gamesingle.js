@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Square from './Square';
 
 const topDown = {
@@ -231,6 +231,15 @@ export default function Gamesingle() {
             <div className="squares">
                 {squareElements}
             </div>
+            <AnimatePresence>
+            {!playerTurn && <motion.div className="botStatus" exit={{ opacity: 0 }}>
+                <motion.p 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    whileHover={{ scale: 1.3 }}
+                    whileTap={{ scale: 1.3 }}>CPU is thinking</motion.p>
+            </motion.div>}
+            </AnimatePresence>
         </div>
     )
 }

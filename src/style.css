@@ -379,3 +379,9 @@ ul > a:hover {
 	align-items: center;
 }
 
+.botStatus {
+	top: 550px;
+	position: absolute;
+	filter: brightness(50%);
+}
+
