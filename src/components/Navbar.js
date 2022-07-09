@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 
 export default function Navbar(props) {
 
+    
     return (
         <nav>
             <Link to="/" className="nav-logo"><img src={WebLogo} alt="tic tac toe by Jason Yang logo"></img></Link>
