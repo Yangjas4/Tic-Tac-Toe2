@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Square from './Square';
+import useSound from 'use-sound';
+import playerSfx from '../sounds/abs-confirm-1.mp3';
+import cpuSfx from '../sounds/abs-cancel-1.mp3';
 
 const topDown = {
     hidden: {
@@ -78,28 +81,20 @@ export default function Gamesingle() {
             id: 8,
             gameState: ""
         }]
+    const playerConfig = {
+        player: "x",
+        cpu: "o"
+    }
     const [squaresArray, setSquaresArray] = useState(initSquares);
     const squareElements = squaresArray.map(square => <Square id={square.id} gameState={square.gameState} key={square.id} toggleSquare={toggleSquare} />);
-    const [playerPieces, setPlayerPieces] = useState(randomizePlayer());
+    const [playerPieces, setPlayerPieces] = useState(playerConfig);
     const [playerTurn, setPlayerTurn] = useState(playerPieces.player === "x");
     const [gameOver, setGameOver] = useState(false);
     const [winner, setWinner] = useState("")
     const [winstreak, setWinstreak] = useState(0);
+    const [playerMoveSound] = useSound(playerSfx);
+    const [cpuMoveSound] = useSound(cpuSfx);
 
-    function randomizePlayer() {
-        const player = Math.floor(Math.random() * 2);
-        if (player === 0) {
-            return {
-                player: "o",
-                cpu: "x"
-            }
-        } else {
-            return {
-                player: "x",
-                cpu: "o"
-            }
-        }
-    }
 
     function toggleSquare(id) {
         if (playerTurn) {
@@ -108,6 +103,7 @@ export default function Gamesingle() {
                     return square.id === id ? { ...square, gameState: playerPieces.player } : square
                 })
             })
+            playerMoveSound();
         } else {
             return
         }
@@ -127,6 +123,7 @@ export default function Gamesingle() {
                     return square.id === cpuMove ? { ...square, gameState: playerPieces.cpu } : square
                 })
             })
+            cpuMoveSound();
             setPlayerTurn(prevPlayerTurn => !prevPlayerTurn)
             console.log(playerTurn)
             checkWin();
@@ -240,6 +237,13 @@ export default function Gamesingle() {
                         animate={{ opacity: 1 }}
                         whileHover={{ scale: 1.3 }}
                         whileTap={{ scale: 1.3 }}>CPU is thinking</motion.p>
+                </motion.div>}
+                {playerTurn && <motion.div className="botStatus" exit={{ opacity: 0 }}>
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        whileHover={{ scale: 1.3 }}
+                        whileTap={{ scale: 1.3 }}>It's your turn!</motion.p>
                 </motion.div>}
             </AnimatePresence>
         </div>
