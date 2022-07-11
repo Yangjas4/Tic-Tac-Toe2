@@ -130,7 +130,7 @@ export default function Gamesingle() {
             console.log(playerTurn)
             console.log(`winner: ${winner}`);
         }
-    }, 1000)
+    }, 1500)
 
     function checkWin() {
         const wincheckArray = squaresArray.map(square => {
@@ -148,6 +148,7 @@ export default function Gamesingle() {
         //x 
         if (wincheckArray[0] + wincheckArray[1] + wincheckArray[2] === 3) {
             console.log("x wins");
+            setWinstreak(prevWinstreak => prevWinstreak + 1);
 
             //o
         } else if (wincheckArray[0] + wincheckArray[1] + wincheckArray[2] === -3) {
@@ -157,6 +158,7 @@ export default function Gamesingle() {
             //x
         } else if (wincheckArray[3] + wincheckArray[4] + wincheckArray[5] === 3) {
             console.log("x wins");
+            setWinstreak(prevWinstreak => prevWinstreak + 1);
 
             //o
         } else if (wincheckArray[3] + wincheckArray[4] + wincheckArray[5] === -3) {
@@ -166,6 +168,7 @@ export default function Gamesingle() {
             //x
         } else if (wincheckArray[6] + wincheckArray[7] + wincheckArray[8] === 3) {
             console.log("x wins");
+            setWinstreak(prevWinstreak => prevWinstreak + 1);
 
             //o
         } else if (wincheckArray[6] + wincheckArray[7] + wincheckArray[8] === -3) {
@@ -174,6 +177,7 @@ export default function Gamesingle() {
             //Column 1
         } else if (wincheckArray[0] + wincheckArray[3] + wincheckArray[6] === 3) {
             console.log("x wins");
+            setWinstreak(prevWinstreak => prevWinstreak + 1);
 
             //o 
         } else if (wincheckArray[0] + wincheckArray[3] + wincheckArray[6] === -3) {
@@ -182,6 +186,7 @@ export default function Gamesingle() {
             //Column 2
         } else if (wincheckArray[1] + wincheckArray[4] + wincheckArray[7] === 3) {
             console.log("x wins");
+            setWinstreak(prevWinstreak => prevWinstreak + 1);
 
             //o 
         } else if (wincheckArray[1] + wincheckArray[4] + wincheckArray[7] === -3) {
@@ -190,6 +195,7 @@ export default function Gamesingle() {
             //Column 3
         } else if (wincheckArray[2] + wincheckArray[5] + wincheckArray[8] === 3) {
             console.log("x wins");
+            setWinstreak(prevWinstreak => prevWinstreak + 1);
 
             //o 
         } else if (wincheckArray[2] + wincheckArray[5] + wincheckArray[8] === -3) {
@@ -198,6 +204,7 @@ export default function Gamesingle() {
             //Diagonals
         } else if (wincheckArray[0] + wincheckArray[4] + wincheckArray[8] === 3) {
             console.log("x wins");
+            setWinstreak(prevWinstreak => prevWinstreak + 1);
 
 
         } else if (wincheckArray[0] + wincheckArray[4] + wincheckArray[8] === -3) {
@@ -206,6 +213,7 @@ export default function Gamesingle() {
 
         } else if (wincheckArray[2] + wincheckArray[4] + wincheckArray[6] === 3) {
             console.log("x wins");
+            setWinstreak(prevWinstreak => prevWinstreak + 1);
 
 
         } else if (wincheckArray[2] + wincheckArray[4] + wincheckArray[6] === -3) {
