@@ -97,6 +97,7 @@ export default function Gamesingle() {
 
 
     function toggleSquare(id) {
+        checkWin();
         if (playerTurn) {
             setSquaresArray(prevSquares => {
                 return prevSquares.map((square) => {
@@ -110,9 +111,11 @@ export default function Gamesingle() {
         setPlayerTurn(prevPlayerTurn => !prevPlayerTurn);
         console.log(playerTurn);
         checkWin();
+        console.log(`winner: ${winner}`);
     }
 
     setTimeout(() => {
+        checkWin();
         if (!playerTurn) {
             let cpuMove = 0;
             do {
@@ -127,93 +130,23 @@ export default function Gamesingle() {
             setPlayerTurn(prevPlayerTurn => !prevPlayerTurn)
             console.log(playerTurn)
             checkWin();
+            console.log(`winner: ${winner}`);
         }
     }, 3000)
 
     function checkWin() {
         const wincheckArray = squaresArray.map(square => {
-            return square.gameState
+            if (square.gameState === "x") {
+                return 1;
+            } else if (square.gameState === "o") {
+                return -1;
+            } else {
+                return 0;
+            }
         });
+        console.log(`wincheck: ${wincheckArray}`)
 
-        switch (wincheckArray) {
-            //rows
-            //first row
-            case wincheckArray[0] === "x" && wincheckArray[1] === "x" && wincheckArray[2] === "x":
-                setGameOver(true);
-                playerPieces.player === "x" ? setWinner("player") : setWinner("cpu");
-                break;
-            case wincheckArray[0] === "o" && wincheckArray[1] === "o" && wincheckArray[2] === "o":
-                setGameOver(true);
-                playerPieces.player === "o" ? setWinner("player") : setWinner("cpu");
-                break;
-            //second row
-            case wincheckArray[3] === "x" && wincheckArray[4] === "x" && wincheckArray[5] === "x":
-                setGameOver(true);
-                playerPieces.player === "x" ? setWinner("player") : setWinner("cpu");
-                break;
-            case wincheckArray[3] === "o" && wincheckArray[4] === "o" && wincheckArray[5] === "o":
-                setGameOver(true);
-                playerPieces.player === "o" ? setWinner("player") : setWinner("cpu");
-                break;
-            //third row
-            case wincheckArray[6] === "x" && wincheckArray[7] === "x" && wincheckArray[8] === "x":
-                setGameOver(true);
-                playerPieces.player === "x" ? setWinner("player") : setWinner("cpu");
-                break;
-            case wincheckArray[6] === "o" && wincheckArray[7] === "o" && wincheckArray[8] === "o":
-                setGameOver(true);
-                playerPieces.player === "o" ? setWinner("player") : setWinner("cpu");
-                break;
-            //columns
-            //first column
-            case wincheckArray[0] === "x" && wincheckArray[3] === "x" && wincheckArray[6] === "x":
-                setGameOver(true);
-                playerPieces.player === "x" ? setWinner("player") : setWinner("cpu");
-                break;
-            case wincheckArray[0] === "o" && wincheckArray[1] === "o" && wincheckArray[6] === "o":
-                setGameOver(true);
-                playerPieces.player === "o" ? setWinner("player") : setWinner("cpu");
-                break;
-            //second column
-            case wincheckArray[1] === "x" && wincheckArray[4] === "x" && wincheckArray[7] === "x":
-                setGameOver(true);
-                playerPieces.player === "x" ? setWinner("player") : setWinner("cpu");
-                break;
-            case wincheckArray[1] === "o" && wincheckArray[4] === "o" && wincheckArray[7] === "o":
-                setGameOver(true);
-                playerPieces.player === "o" ? setWinner("player") : setWinner("cpu");
-                break;
-            //third column
-            case wincheckArray[2] === "x" && wincheckArray[5] === "x" && wincheckArray[8] === "x":
-                setGameOver(true);
-                playerPieces.player === "x" ? setWinner("player") : setWinner("cpu");
-                break;
-            case wincheckArray[2] === "o" && wincheckArray[5] === "o" && wincheckArray[8] === "o":
-                setGameOver(true);
-                playerPieces.player === "o" ? setWinner("player") : setWinner("cpu");
-                break;
-            //diagonals
-            //left to right
-            case wincheckArray[0] === "x" && wincheckArray[4] === "x" && wincheckArray[8] === "x":
-                setGameOver(true);
-                playerPieces.player === "x" ? setWinner("player") : setWinner("cpu");
-                break;
-            case wincheckArray[0] === "o" && wincheckArray[4] === "o" && wincheckArray[8] === "o":
-                setGameOver(true);
-                playerPieces.player === "o" ? setWinner("player") : setWinner("cpu");
-                break;
-            //right to left
-            case wincheckArray[2] === "x" && wincheckArray[4] === "x" && wincheckArray[6] === "x":
-                setGameOver(true);
-                playerPieces.player === "x" ? setWinner("player") : setWinner("cpu");
-                break;
-            case wincheckArray[2] === "o" && wincheckArray[4] === "o" && wincheckArray[6] === "o":
-                setGameOver(true);
-                playerPieces.player === "o" ? setWinner("player") : setWinner("cpu");
-                break;
-            default:
-                return;
-        }
+
     }
 
     console.log(squaresArray)
