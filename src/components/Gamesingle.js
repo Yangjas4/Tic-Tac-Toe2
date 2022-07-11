@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Square from './Square';
 import useSound from 'use-sound';
@@ -113,24 +113,32 @@ export default function Gamesingle() {
         console.log(`winner: ${winner}`);
     }
 
-    checkWin();
-    setTimeout(() => {
+    function resetGame() {
+        setSquaresArray(initSquares);
+        setPlayerTurn(true);
+        console.log(`playerturn: ${playerTurn}`)
+    }
+
+    useEffect(() => {
+        checkWin();
         if (!playerTurn) {
-            let cpuMove = 0;
-            do {
-                cpuMove = Math.floor(Math.random() * 9)
-            } while (squaresArray[cpuMove].gameState !== "")
-            setSquaresArray(prevSquares => {
-                return prevSquares.map((square) => {
-                    return square.id === cpuMove ? { ...square, gameState: playerPieces.cpu } : square
-                })
-            })
-            cpuMoveSound();
-            setPlayerTurn(prevPlayerTurn => !prevPlayerTurn)
-            console.log(playerTurn)
-            console.log(`winner: ${winner}`);
+            setTimeout(() => {
+                    let cpuMove = 0;
+                    do {
+                        cpuMove = Math.floor(Math.random() * 9)
+                    } while (squaresArray[cpuMove].gameState !== "")
+                    setSquaresArray(prevSquares => {
+                        return prevSquares.map((square) => {
+                            return square.id === cpuMove ? { ...square, gameState: playerPieces.cpu } : square
+                        })
+                    })
+                    cpuMoveSound();
+                    setPlayerTurn(prevPlayerTurn => !prevPlayerTurn)
+                    console.log(playerTurn)
+                    console.log(`winner: ${winner}`);
+            }, 1500)
         }
-    }, 1500)
+    })
 
     function checkWin() {
         const wincheckArray = squaresArray.map(square => {
@@ -143,12 +151,13 @@ export default function Gamesingle() {
             }
         });
         console.log(`wincheck: ${wincheckArray}`)
-    
+
         //Row 1
         //x 
         if (wincheckArray[0] + wincheckArray[1] + wincheckArray[2] === 3) {
             console.log("x wins");
             setWinstreak(prevWinstreak => prevWinstreak + 1);
+            resetGame();
 
             //o
         } else if (wincheckArray[0] + wincheckArray[1] + wincheckArray[2] === -3) {
@@ -159,6 +168,7 @@ export default function Gamesingle() {
         } else if (wincheckArray[3] + wincheckArray[4] + wincheckArray[5] === 3) {
             console.log("x wins");
             setWinstreak(prevWinstreak => prevWinstreak + 1);
+            resetGame();
 
             //o
         } else if (wincheckArray[3] + wincheckArray[4] + wincheckArray[5] === -3) {
@@ -169,6 +179,7 @@ export default function Gamesingle() {
         } else if (wincheckArray[6] + wincheckArray[7] + wincheckArray[8] === 3) {
             console.log("x wins");
             setWinstreak(prevWinstreak => prevWinstreak + 1);
+            resetGame();
 
             //o
         } else if (wincheckArray[6] + wincheckArray[7] + wincheckArray[8] === -3) {
@@ -178,6 +189,7 @@ export default function Gamesingle() {
         } else if (wincheckArray[0] + wincheckArray[3] + wincheckArray[6] === 3) {
             console.log("x wins");
             setWinstreak(prevWinstreak => prevWinstreak + 1);
+            resetGame();
 
             //o 
         } else if (wincheckArray[0] + wincheckArray[3] + wincheckArray[6] === -3) {
@@ -187,6 +199,7 @@ export default function Gamesingle() {
         } else if (wincheckArray[1] + wincheckArray[4] + wincheckArray[7] === 3) {
             console.log("x wins");
             setWinstreak(prevWinstreak => prevWinstreak + 1);
+            resetGame();
 
             //o 
         } else if (wincheckArray[1] + wincheckArray[4] + wincheckArray[7] === -3) {
@@ -196,6 +209,7 @@ export default function Gamesingle() {
         } else if (wincheckArray[2] + wincheckArray[5] + wincheckArray[8] === 3) {
             console.log("x wins");
             setWinstreak(prevWinstreak => prevWinstreak + 1);
+            resetGame();
 
             //o 
         } else if (wincheckArray[2] + wincheckArray[5] + wincheckArray[8] === -3) {
@@ -205,6 +219,7 @@ export default function Gamesingle() {
         } else if (wincheckArray[0] + wincheckArray[4] + wincheckArray[8] === 3) {
             console.log("x wins");
             setWinstreak(prevWinstreak => prevWinstreak + 1);
+            resetGame();
 
 
         } else if (wincheckArray[0] + wincheckArray[4] + wincheckArray[8] === -3) {
@@ -214,6 +229,7 @@ export default function Gamesingle() {
         } else if (wincheckArray[2] + wincheckArray[4] + wincheckArray[6] === 3) {
             console.log("x wins");
             setWinstreak(prevWinstreak => prevWinstreak + 1);
+            resetGame();
 
 
         } else if (wincheckArray[2] + wincheckArray[4] + wincheckArray[6] === -3) {
