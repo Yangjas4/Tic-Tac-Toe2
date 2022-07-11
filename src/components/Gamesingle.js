@@ -97,7 +97,6 @@ export default function Gamesingle() {
 
 
     function toggleSquare(id) {
-        checkWin();
         if (playerTurn) {
             setSquaresArray(prevSquares => {
                 return prevSquares.map((square) => {
@@ -114,8 +113,8 @@ export default function Gamesingle() {
         console.log(`winner: ${winner}`);
     }
 
+    checkWin();
     setTimeout(() => {
-        checkWin();
         if (!playerTurn) {
             let cpuMove = 0;
             do {
@@ -129,7 +128,6 @@ export default function Gamesingle() {
             cpuMoveSound();
             setPlayerTurn(prevPlayerTurn => !prevPlayerTurn)
             console.log(playerTurn)
-            checkWin();
             console.log(`winner: ${winner}`);
         }
     }, 3000)
@@ -145,8 +143,9 @@ export default function Gamesingle() {
             }
         });
         console.log(`wincheck: ${wincheckArray}`)
-
-
+        if (wincheckArray[0] + wincheckArray[1] + wincheckArray[2] === 3) {
+            console.log("x wins")
+        }
     }
 
     console.log(squaresArray)
