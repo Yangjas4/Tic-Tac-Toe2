@@ -118,7 +118,7 @@ export default function Gamesingle() {
 
     function toggleSquare(id) {
         console.log(`Clicked on square: ${id}`);
-        if (playerTurn) {
+        if (playerTurn && squaresArray[id].gameState === "") {
             setSquaresArray(prevSquares => {
                 return prevSquares.map((square) => {
                     return square.id === id ? { ...square, gameState: playerPieces.player } : square
