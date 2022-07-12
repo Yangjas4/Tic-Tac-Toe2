@@ -81,21 +81,43 @@ export default function Gamesingle() {
             id: 8,
             gameState: ""
         }]
+
     const playerConfig = {
         player: "x",
         cpu: "o"
     }
+
+    // setSquaresArray only runs after either Player or CPU has made a move
+    // => so we don't need to explicitly toggle setPlayerTurn(!playerTurn)
+    // since useEffect(()=>..., [squaresArray]) will toggle playerTurn for us
     const [squaresArray, setSquaresArray] = useState(initSquares);
+
     const squareElements = squaresArray.map(square => <Square id={square.id} gameState={square.gameState} key={square.id} toggleSquare={toggleSquare} />);
     const [playerPieces, setPlayerPieces] = useState(playerConfig);
-    const [playerTurn, setPlayerTurn] = useState(playerPieces.player === "x");
+    
+    // setPlayerTurn is only called after
+    //  1.  Board Reset (resetGame())
+    //  2.  either player or cpu plays -> setSquaresArray() -> toggle playerTurn 
+    const [playerTurn, setPlayerTurn] = useState(playerConfig.player === 'x');
     const [gameOver, setGameOver] = useState(false);
     const [winstreak, setWinstreak] = useState(0);
     const [playerMoveSound] = useSound(playerSfx);
     const [cpuMoveSound] = useSound(cpuSfx);
 
+    /*
+    *   Can't just do squaresArray === initSquares because
+    *   'Referential Equality' between initSquares and setSquaresArray(initSquares)
+    *   makes it not equal
+    */
+    const isBoardCleared = (squaresArray) => {
+        // Check if any square has a gameState which ISN'T empty string
+        const isCleared = !squaresArray.some((square) => square.gameState !== "");
+        console.log("isBoardCleared?: ", isCleared);
+        return isCleared;
+    }
 
     function toggleSquare(id) {
+        console.log(`Clicked on square: ${id}`);
         if (playerTurn) {
             setSquaresArray(prevSquares => {
                 return prevSquares.map((square) => {
@@ -104,43 +126,50 @@ export default function Gamesingle() {
             })
             playerMoveSound();
         } else {
+            console.log(`%cTried to toggleSquare when not playerTurn`, "color: pink");
             return
         }
-        if (!checkWin()){
-            setPlayerTurn(prevPlayerTurn => !prevPlayerTurn);
-        }
-        console.log(`togglesquarew ${playerTurn}`);
     }
 
     function resetGame() {
         setSquaresArray(initSquares);
         setPlayerTurn(true);
-        console.log(`playerturn: ${playerTurn}`)
+        console.log(`Reset Game Current Player: ${playerTurn}`)
     }
 
     useEffect(() => {
-        checkWin();
-        
+        console.log('%cuseEffect: %cSquares Array Updated', "color: orange", "color: white");
+        if (!checkWin() && !isBoardCleared(squaresArray)) {
+            console.log(`%cNot a winning state AND board isn't cleared`, "color: purple");
+            // Set playerTurn to CPU if:
+            //  board is not cleared
+            //  AND not a new game (someone hasn't won yet)
+            setPlayerTurn(prevState => !prevState);
+        };
     }, [squaresArray])
-   
+
     useEffect(() => {
-        console.log(`cpuplayerthing: ${playerTurn}`)
-            setTimeout(() => {
-                if (!playerTurn) {
-                    let cpuMove = 0;
-                    do {
-                        cpuMove = Math.floor(Math.random() * 9)
-                    } while (squaresArray[cpuMove].gameState !== "")
-                    setSquaresArray(prevSquares => {
-                        return prevSquares.map((square) => {
-                            return square.id === cpuMove ? { ...square, gameState: playerPieces.cpu } : square
-                        })
+        console.log(`%cuseEffect: %cPlayer Turn Updated To: ${playerTurn}`, "color: orange", "color: gold")
+        
+        // might need to clear setTimeout if setting playerTurn too quickly
+        // https://developer.mozilla.org/en-US/docs/Web/API/setTimeout
+        // use clearTimeout() to do that
+        setTimeout(() => {
+            if (!playerTurn) {
+                let cpuMove = 0;
+                do {
+                    cpuMove = Math.floor(Math.random() * 9)
+                } while (squaresArray[cpuMove].gameState !== "")
+
+                console.log(`%cCPU Move toggling playerTurn to: %c${!playerTurn}`, "color: forestgreen", "color: white");
+                setSquaresArray(prevSquares => {
+                    return prevSquares.map((square) => {
+                        return square.id === cpuMove ? { ...square, gameState: playerPieces.cpu } : square
                     })
-                    cpuMoveSound();
-                    setPlayerTurn(prevPlayerTurn => !prevPlayerTurn)
-                    console.log(` insidetimeout: ${playerTurn}`)
-                }
-            }, 1500)
+                })
+                cpuMoveSound();
+            }
+        }, 1500);
     }, [playerTurn])
 
     function checkWin() {
@@ -260,8 +289,6 @@ export default function Gamesingle() {
         return false;
     }
 
-    console.log(squaresArray)
-    console.log(playerPieces)
     return (
         <div className="actual-game-single">
             <h1 className="winstreak-counter" onClick={toggleSquare} ><span className="bold">Your</span> Winstreak: {winstreak}</h1>
