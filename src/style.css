@@ -335,6 +335,27 @@ ul > a:hover {
 	white-space: nowrap;
 }
 
+.winstreak-counter-big {
+	margin-top: 50px;
+	font-weight: 300;
+	font-size: 57px;
+	position: relative;
+	overflow: hidden;
+	width: 500;
+	white-space: nowrap;
+}
+
+.winstreak-counter-big::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 2px;
+	height: 100%;
+	background: white;
+	animation: blinkcursor 0.8s steps(3) infinite;
+}
+
 .winstreak-counter::before {
 	content: "";
 	position: absolute;
