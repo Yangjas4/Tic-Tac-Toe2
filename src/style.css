@@ -418,6 +418,11 @@ ul > a:hover {
 	}
 
 }
+@media all and (max-height: 700px) {
+	.rules-p {
+		font-size: 10px;
+	}
+}
 
 @media all and (max-height: 790px) {
 	
@@ -457,4 +462,17 @@ ul > a:hover {
 		top: 150px;
 	}
 
+}
+
+@media all and (max-width: 1000px) {
+	.margin {
+		margin-left: 50px;
+		margin-right: 50px;
+	}
+}
+
+@media all and (max-width: 840px) {
+	.weather-button {
+		display: none;
+	}
 }
