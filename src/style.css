@@ -23,6 +23,7 @@
 	margin-right: 120px;
 }
 
+
 body {
 	background-color: black;
 }
@@ -406,3 +407,54 @@ ul > a:hover {
 	filter: brightness(50%);
 }
 
+@media all and (max-height: 625px) { 
+
+	.play-container {
+		margin-top: 20px;
+	}
+
+	nav {
+		padding-top: 50px;
+	}
+
+}
+
+@media all and (max-height: 790px) {
+	
+	.gameboard {
+		margin-top: 30px;
+	}
+
+	.squares {
+		margin-top: 30px;
+	}
+
+	.botStatus {
+		top: 420px;
+	}
+
+	.winstreak-counter {
+		right: 290px;
+		font-size: 40px;
+		width: 400px;
+		top: 150px;
+	}
+
+	.winstreak-counter::before {
+		width: 0px;
+		height: 0px;
+	}
+
+	.winstreak-counter-big::before {
+		width: 0px;
+		height: 0px;
+	}
+
+	.winstreak-counter-big {
+		right: 335px;
+		font-size: 40px;
+		width: 400px;
+		top: 150px;
+	}
+
+}
