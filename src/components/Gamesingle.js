@@ -44,6 +44,7 @@ const fadeIn = {
 }
 
 export default function Gamesingle() {
+    console.log("%cRerendered", "color: yellow")
     const initSquares = [
         {
             id: 0,
@@ -118,7 +119,7 @@ export default function Gamesingle() {
 
     function toggleSquare(id) {
         console.log(`Clicked on square: ${id}`);
-        if (playerTurn && squaresArray[id].gameState === "") {
+        if (playerTurn && squaresArray[id].gameState === "" && isGameOver === false) {
             setSquaresArray(prevSquares => {
                 return prevSquares.map((square) => {
                     return square.id === id ? { ...square, gameState: playerPieces.player } : square
@@ -305,7 +306,6 @@ export default function Gamesingle() {
 
     return (
         <div className="actual-game-single">
-            {isGameOver && <div className="modal-submit-leaderboards"></div>}
             <h1 className={winstreak < 9 ? "winstreak-counter" : "winstreak-counter-big"} onClick={toggleSquare} ><span className="bold">Your</span> Winstreak: {winstreak}</h1>
             <motion.svg className="gameboard" width="390" height="373" viewBox="0 0 390 373" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <motion.rect variants={topDown} initial="hidden" animate="visible" x="123" width="11" height="373" fill="#492CFF" />
@@ -332,6 +332,8 @@ export default function Gamesingle() {
                         whileTap={{ scale: 1.3 }}>It's your turn!</motion.p>
                 </motion.div>}
             </AnimatePresence>
+            {isGameOver && <div className="game-over-blur"></div>}
+            {isGameOver && <div className="modal-submit-leaderboards"></div>}
         </div>
     )
 }

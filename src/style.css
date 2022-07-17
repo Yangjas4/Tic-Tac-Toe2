@@ -476,3 +476,17 @@ ul > a:hover {
 		display: none;
 	}
 }
+
+.modal-submit-leaderboards {
+	position: absolute;
+	background-color: #0A1016;
+	width: 630px;
+	height: 380px;
+	border-radius: 11px;
+}
+
+.game-over-blur {
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+}
