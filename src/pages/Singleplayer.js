@@ -15,6 +15,7 @@ export default function Singleplayer() {
         console.log(gameState);
     }
 
+
     return (
         <div className="app">
             <div className="margin">

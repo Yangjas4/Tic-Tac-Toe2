@@ -332,7 +332,6 @@ export default function Gamesingle() {
                         whileTap={{ scale: 1.3 }}>It's your turn!</motion.p>
                 </motion.div>}
             </AnimatePresence>
-            {isGameOver && <div className="game-over-blur"></div>}
             {isGameOver && <div className="modal-submit-leaderboards"></div>}
         </div>
     )
