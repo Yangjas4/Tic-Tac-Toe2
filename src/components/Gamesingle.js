@@ -99,10 +99,10 @@ export default function Gamesingle() {
     //  1.  Board Reset (resetGame())
     //  2.  either player or cpu plays -> setSquaresArray() -> toggle playerTurn 
     const [playerTurn, setPlayerTurn] = useState(playerConfig.player === 'x');
-    const [gameOver, setGameOver] = useState(false);
     const [winstreak, setWinstreak] = useState(0);
     const [playerMoveSound] = useSound(playerSfx);
     const [cpuMoveSound] = useSound(cpuSfx);
+    const [isGameOver, setisGameOver] = useState(false);
 
     /*
     *   Can't just do squaresArray === initSquares because
@@ -195,6 +195,7 @@ export default function Gamesingle() {
             //o
         } else if (wincheckArray[0] + wincheckArray[1] + wincheckArray[2] === -3) {
             console.log("o wins");
+            gameOver();
             return true;
 
             //Row 2
@@ -208,6 +209,7 @@ export default function Gamesingle() {
             //o
         } else if (wincheckArray[3] + wincheckArray[4] + wincheckArray[5] === -3) {
             console.log("o wins");
+            gameOver();
             return true;
 
             //Row 3
@@ -221,6 +223,7 @@ export default function Gamesingle() {
             //o
         } else if (wincheckArray[6] + wincheckArray[7] + wincheckArray[8] === -3) {
             console.log("o wins");
+            gameOver();
             return true;
 
             //Column 1
@@ -233,6 +236,7 @@ export default function Gamesingle() {
             //o 
         } else if (wincheckArray[0] + wincheckArray[3] + wincheckArray[6] === -3) {
             console.log("o wins");
+            gameOver();
 
             //Column 2
         } else if (wincheckArray[1] + wincheckArray[4] + wincheckArray[7] === 3) {
@@ -244,6 +248,7 @@ export default function Gamesingle() {
             //o 
         } else if (wincheckArray[1] + wincheckArray[4] + wincheckArray[7] === -3) {
             console.log("o wins");
+            gameOver();
             return true;
 
             //Column 3
@@ -256,6 +261,7 @@ export default function Gamesingle() {
             //o 
         } else if (wincheckArray[2] + wincheckArray[5] + wincheckArray[8] === -3) {
             console.log("o wins");
+            gameOver();
             return true;
 
             //Diagonals
@@ -268,6 +274,7 @@ export default function Gamesingle() {
 
         } else if (wincheckArray[0] + wincheckArray[4] + wincheckArray[8] === -3) {
             console.log("o wins");
+            gameOver();
             return true;
 
 
@@ -280,17 +287,25 @@ export default function Gamesingle() {
 
         } else if (wincheckArray[2] + wincheckArray[4] + wincheckArray[6] === -3) {
             console.log("o wins");
+            gameOver();
             return true;
 
         } else if (!wincheckArray.includes(0)) {
             console.log("draw");
+            gameOver();
             return true;
         }
         return false;
     }
 
+    function gameOver() {
+        console.log('%cPlayer lost or drew, displaying game over modal', "color: red");
+        setisGameOver(true);
+    }
+
     return (
         <div className="actual-game-single">
+            {isGameOver && <div className="modal-submit-leaderboards"></div>}
             <h1 className={winstreak < 9 ? "winstreak-counter" : "winstreak-counter-big"} onClick={toggleSquare} ><span className="bold">Your</span> Winstreak: {winstreak}</h1>
             <motion.svg className="gameboard" width="390" height="373" viewBox="0 0 390 373" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <motion.rect variants={topDown} initial="hidden" animate="visible" x="123" width="11" height="373" fill="#492CFF" />
