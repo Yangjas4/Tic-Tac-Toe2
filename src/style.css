@@ -484,4 +484,14 @@ ul > a:hover {
 	height: 380px;
 	border-radius: 11px;
 	border: 3px solid #472BF5;
+	top: 20px;
+}
+
+.background-transparent-black {
+	position: absolute;
+	top: 30px;
+	height: 65vh;
+	width: 100%;
+	background-color: black;
+	opacity: .7;
 }
