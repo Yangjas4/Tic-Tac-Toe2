@@ -95,7 +95,7 @@ export default function Gamesingle() {
 
     const squareElements = squaresArray.map(square => <Square id={square.id} gameState={square.gameState} key={square.id} toggleSquare={toggleSquare} />);
     const [playerPieces, setPlayerPieces] = useState(playerConfig);
-    
+
     // setPlayerTurn is only called after
     //  1.  Board Reset (resetGame())
     //  2.  either player or cpu plays -> setSquaresArray() -> toggle playerTurn 
@@ -104,6 +104,7 @@ export default function Gamesingle() {
     const [playerMoveSound] = useSound(playerSfx);
     const [cpuMoveSound] = useSound(cpuSfx);
     const [isGameOver, setisGameOver] = useState(false);
+    const [nickname, setNickname] = useState("");
 
     /*
     *   Can't just do squaresArray === initSquares because
@@ -151,7 +152,7 @@ export default function Gamesingle() {
 
     useEffect(() => {
         console.log(`%cuseEffect: %cPlayer Turn Updated To: ${playerTurn}`, "color: orange", "color: gold")
-        
+
         // might need to clear setTimeout if setting playerTurn too quickly
         // https://developer.mozilla.org/en-US/docs/Web/API/setTimeout
         // use clearTimeout() to do that
@@ -332,7 +333,23 @@ export default function Gamesingle() {
                         whileTap={{ scale: 1.3 }}>It's your turn!</motion.p>
                 </motion.div>}
             </AnimatePresence>
-            {isGameOver && <div className="modal-submit-leaderboards"></div>}
+            <AnimatePresence>
+                {isGameOver && <motion.div className="background-transparent-black" exit={{ opacity: 0 }} initial={{ opacity: 0 }} animate={{ opacity: 1 }}></motion.div>}
+                {isGameOver && <motion.div className="modal-submit-leaderboards"
+                    exit={{ opacity: 0 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                >
+                    <h1 className="game-over-title"><span className="blueNoTyping">GAME</span>_OVER</h1>
+                    <div className="game-over-subtitles">
+                        <p className="game-over-subtitle-final-win">Your final winstreak is: <span className="win-number">10</span></p>
+                        <p className="game-over-subtitle-final-win">Please enter your name for a spot on the leaderboards</p>
+                        <input 
+                            type="text"
+                             />
+                    </div>
+                </motion.div>}
+            </AnimatePresence>
         </div>
     )
 }
