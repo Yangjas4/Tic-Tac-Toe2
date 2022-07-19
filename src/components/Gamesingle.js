@@ -4,6 +4,7 @@ import Square from './Square';
 import useSound from 'use-sound';
 import playerSfx from '../sounds/abs-confirm-1.mp3';
 import cpuSfx from '../sounds/abs-cancel-1.mp3';
+import db from '../firebase';
 
 const topDown = {
     hidden: {
@@ -175,6 +176,11 @@ export default function Gamesingle() {
         }, 1500);
     }, [playerTurn])
 
+    // useEffect(() => {
+    //     db.collection('leaderboards').onSnapshot(snapshot => {
+    //     })
+    // }, [])
+
     function checkWin() {
         const wincheckArray = squaresArray.map(square => {
             if (square.gameState === "x") {
@@ -320,6 +326,10 @@ export default function Gamesingle() {
 
     function handleSubmit() {
         console.log("%cName Submitted", "color: green")
+        db.collection('leaderboards').add({
+            name: nickname,
+            winstreak: winstreak
+        })
     }
 
     return (
