@@ -105,6 +105,7 @@ export default function Gamesingle() {
     const [cpuMoveSound] = useSound(cpuSfx);
     const [isGameOver, setisGameOver] = useState(false);
     const [nickname, setNickname] = useState("");
+    const [endscreen, setEndScreen] = useState(false);
 
     /*
     *   Can't just do squaresArray === initSquares because
@@ -305,6 +306,22 @@ export default function Gamesingle() {
         setisGameOver(true);
     }
 
+    function inputName(event) {
+        setNickname(event.target.value);
+        console.log(nickname)
+    }
+
+    function handleKeyDown(event) {
+        if (event.key === 'Enter') {
+            console.log("%center was pressed while input selected", "color: green");
+            handleSubmit();
+        }
+    }
+
+    function handleSubmit() {
+        console.log("%cName Submitted", "color: green")
+    }
+
     return (
         <div className="actual-game-single">
             <h1 className={winstreak < 9 ? "winstreak-counter" : "winstreak-counter-big"} onClick={toggleSquare} ><span className="bold">Your</span> Winstreak: {winstreak}</h1>
@@ -340,14 +357,25 @@ export default function Gamesingle() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                 >
-                    <h1 className="game-over-title"><span className="blueNoTyping">GAME</span>_OVER</h1>
-                    <div className="game-over-subtitles">
-                        <p className="game-over-subtitle-final-win">Your final winstreak is: <span className="win-number">10</span></p>
-                        <p className="game-over-subtitle-final-win">Please enter your name for a spot on the leaderboards</p>
-                        <input 
-                            type="text"
-                             />
-                    </div>
+                    {!endscreen && <div className="modal-content">
+                        <h1 className="game-over-title"><span className="blueNoTyping">GAME</span>_OVER</h1>
+                        <div className="game-over-subtitles">
+                            <p className="game-over-subtitle-final-win">Your final winstreak is: <span className="win-number">10</span></p>
+                            <p className="game-over-subtitle-final-win">Please enter your name for a spot on the leaderboards</p>
+                            <div className="input-name">
+                                <input
+                                    type="text"
+                                    value={nickname}
+                                    onChange={inputName}
+                                    className="input-box"
+                                    onKeyDown={handleKeyDown}
+                                    autoFocus
+                                />
+                                <p className="placeholder-name">Enter your name</p>
+                                <motion.div className="submit-name" whileHover={{ scale: 1.1 }} onClick={handleSubmit}><p>Submit</p></motion.div>
+                            </div>
+                        </div>
+                    </div>}
                 </motion.div>}
             </AnimatePresence>
         </div>
