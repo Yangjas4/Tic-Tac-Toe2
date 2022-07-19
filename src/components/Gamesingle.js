@@ -44,6 +44,7 @@ const fadeIn = {
 }
 
 export default function Gamesingle() {
+    console.log("%cRerendered", "color: yellow")
     const initSquares = [
         {
             id: 0,
@@ -94,15 +95,17 @@ export default function Gamesingle() {
 
     const squareElements = squaresArray.map(square => <Square id={square.id} gameState={square.gameState} key={square.id} toggleSquare={toggleSquare} />);
     const [playerPieces, setPlayerPieces] = useState(playerConfig);
-    
+
     // setPlayerTurn is only called after
     //  1.  Board Reset (resetGame())
     //  2.  either player or cpu plays -> setSquaresArray() -> toggle playerTurn 
     const [playerTurn, setPlayerTurn] = useState(playerConfig.player === 'x');
-    const [gameOver, setGameOver] = useState(false);
     const [winstreak, setWinstreak] = useState(0);
     const [playerMoveSound] = useSound(playerSfx);
     const [cpuMoveSound] = useSound(cpuSfx);
+    const [isGameOver, setisGameOver] = useState(false);
+    const [nickname, setNickname] = useState("");
+    const [endscreen, setEndScreen] = useState(false);
 
     /*
     *   Can't just do squaresArray === initSquares because
@@ -118,7 +121,7 @@ export default function Gamesingle() {
 
     function toggleSquare(id) {
         console.log(`Clicked on square: ${id}`);
-        if (playerTurn && squaresArray[id].gameState === "") {
+        if (playerTurn && squaresArray[id].gameState === "" && isGameOver === false) {
             setSquaresArray(prevSquares => {
                 return prevSquares.map((square) => {
                     return square.id === id ? { ...square, gameState: playerPieces.player } : square
@@ -150,7 +153,7 @@ export default function Gamesingle() {
 
     useEffect(() => {
         console.log(`%cuseEffect: %cPlayer Turn Updated To: ${playerTurn}`, "color: orange", "color: gold")
-        
+
         // might need to clear setTimeout if setting playerTurn too quickly
         // https://developer.mozilla.org/en-US/docs/Web/API/setTimeout
         // use clearTimeout() to do that
@@ -195,6 +198,7 @@ export default function Gamesingle() {
             //o
         } else if (wincheckArray[0] + wincheckArray[1] + wincheckArray[2] === -3) {
             console.log("o wins");
+            gameOver();
             return true;
 
             //Row 2
@@ -208,6 +212,7 @@ export default function Gamesingle() {
             //o
         } else if (wincheckArray[3] + wincheckArray[4] + wincheckArray[5] === -3) {
             console.log("o wins");
+            gameOver();
             return true;
 
             //Row 3
@@ -221,6 +226,7 @@ export default function Gamesingle() {
             //o
         } else if (wincheckArray[6] + wincheckArray[7] + wincheckArray[8] === -3) {
             console.log("o wins");
+            gameOver();
             return true;
 
             //Column 1
@@ -233,6 +239,7 @@ export default function Gamesingle() {
             //o 
         } else if (wincheckArray[0] + wincheckArray[3] + wincheckArray[6] === -3) {
             console.log("o wins");
+            gameOver();
 
             //Column 2
         } else if (wincheckArray[1] + wincheckArray[4] + wincheckArray[7] === 3) {
@@ -244,6 +251,7 @@ export default function Gamesingle() {
             //o 
         } else if (wincheckArray[1] + wincheckArray[4] + wincheckArray[7] === -3) {
             console.log("o wins");
+            gameOver();
             return true;
 
             //Column 3
@@ -256,6 +264,7 @@ export default function Gamesingle() {
             //o 
         } else if (wincheckArray[2] + wincheckArray[5] + wincheckArray[8] === -3) {
             console.log("o wins");
+            gameOver();
             return true;
 
             //Diagonals
@@ -268,6 +277,7 @@ export default function Gamesingle() {
 
         } else if (wincheckArray[0] + wincheckArray[4] + wincheckArray[8] === -3) {
             console.log("o wins");
+            gameOver();
             return true;
 
 
@@ -280,13 +290,36 @@ export default function Gamesingle() {
 
         } else if (wincheckArray[2] + wincheckArray[4] + wincheckArray[6] === -3) {
             console.log("o wins");
+            gameOver();
             return true;
 
         } else if (!wincheckArray.includes(0)) {
             console.log("draw");
+            gameOver();
             return true;
         }
         return false;
+    }
+
+    function gameOver() {
+        console.log('%cPlayer lost or drew, displaying game over modal', "color: red");
+        setisGameOver(true);
+    }
+
+    function inputName(event) {
+        setNickname(event.target.value);
+        console.log(nickname)
+    }
+
+    function handleKeyDown(event) {
+        if (event.key === 'Enter') {
+            console.log("%center was pressed while input selected", "color: green");
+            handleSubmit();
+        }
+    }
+
+    function handleSubmit() {
+        console.log("%cName Submitted", "color: green")
     }
 
     return (
@@ -315,6 +348,34 @@ export default function Gamesingle() {
                         animate={{ opacity: 1 }}
                         whileHover={{ scale: 1.3 }}
                         whileTap={{ scale: 1.3 }}>It's your turn!</motion.p>
+                </motion.div>}
+            </AnimatePresence>
+            <AnimatePresence>
+                {isGameOver && <motion.div className="background-transparent-black" exit={{ opacity: 0 }} initial={{ opacity: 0 }} animate={{ opacity: 1 }}></motion.div>}
+                {isGameOver && <motion.div className="modal-submit-leaderboards"
+                    exit={{ opacity: 0 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                >
+                    {!endscreen && <div className="modal-content">
+                        <h1 className="game-over-title"><span className="blueNoTyping">GAME</span>_OVER</h1>
+                        <div className="game-over-subtitles">
+                            <p className="game-over-subtitle-final-win">Your final winstreak is: <span className="win-number">10</span></p>
+                            <p className="game-over-subtitle-final-win">Please enter your name for a spot on the leaderboards</p>
+                            <div className="input-name">
+                                <input
+                                    type="text"
+                                    value={nickname}
+                                    onChange={inputName}
+                                    className="input-box"
+                                    onKeyDown={handleKeyDown}
+                                    autoFocus
+                                />
+                                <p className="placeholder-name">Enter your name</p>
+                                <motion.div className="submit-name" whileHover={{ scale: 1.1 }} onClick={handleSubmit}><p>Submit</p></motion.div>
+                            </div>
+                        </div>
+                    </div>}
                 </motion.div>}
             </AnimatePresence>
         </div>
