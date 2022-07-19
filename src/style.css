@@ -554,3 +554,56 @@ input:focus {
 	margin-top: 35px;
 	cursor: pointer;
 }
+
+.endscreen-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 50px;
+}
+
+.submission-success {
+	font-weight: 600;
+	font-size: 40px;
+	margin-bottom: 20px;
+}
+
+.endscreen-buttons {
+	display: flex;
+	gap: 40px;
+	margin-top: 25px;
+	margin-bottom: 30px;
+}
+
+.play-again-button {
+	display: flex;
+	background: #492CFF;
+	border-radius: 11px;
+	width: 185px;
+	height: 45px;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.endscreen-subtitle {
+	font-weight: 400;
+	font-size: 15px;
+	color: #969696;
+}
+
+.leaderboards-button > a {
+	text-decoration: none;
+	color: #492CFF;
+}
+
+.leaderboards-button {
+	border-radius: 11px;
+	border: 1px solid #492CFF;
+	width: 185px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
