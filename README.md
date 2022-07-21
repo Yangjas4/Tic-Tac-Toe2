@@ -1,3 +1,8 @@
+#Project Description
+
+This project is my introductory project for frontend development in React. In this application, players can either challenge a q-learning ai in singleplayer tic
+tac toe or player against another player locally on the same machine. In singleplayer, players will play against an ai that starts out only able to make completely random moves. Each time the player defeats the ai, the q-learning model will update its q values and improve the ai. The players objective is to maintain as large of a winstreak as possible meaning they cannot lose or draw against the ai. Top scoring players will be added to the leaderboards where the top 10 players based on winstreak will be displayed
+
 # Firebase
 
 This project is deployed at https://yangjas4-tictactoe.web.app/
