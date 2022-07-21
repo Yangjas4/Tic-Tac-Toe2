@@ -12,7 +12,7 @@ export default function Navbar(props) {
             <ul>
                 <Link to="/singleplayer" className={props.page === "single" ? "nav-underline" : "logo-pos-fix"}>Singleplayer</Link>
                 <Link to="/multiplayer" className={props.page === "multi" ? "nav-underline" : ""}>Multiplayer</Link>
-                <Link to="/leaderboards" className={props.page === "leaderboards" ? "nav-underline" : ""}>Leaderboards</Link>
+                <Link to="/leaderboard" className={props.page === "leaderboards" ? "nav-underline" : ""}>Leaderboards</Link>
             </ul>
             <motion.div
                 whileHover={{ scale: 1.2 }}
