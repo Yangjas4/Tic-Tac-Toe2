@@ -23,6 +23,7 @@ export default function Leaderboard() {
                     }
                 })
                 const sortedLeaderboardData = leaderboardData.sort((a, b) => b.winstreak - a.winstreak);
+                sortedLeaderboardData.splice(10);
                 setLeaderboardElements(sortedLeaderboardData.map((player, index) => <LeaderboardName key={index} name={player.name} score={player.winstreak} rank={index + 1} />))
                 setFinishedLoading(true);
             })
