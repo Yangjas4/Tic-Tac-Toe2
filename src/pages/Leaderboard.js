@@ -5,6 +5,8 @@ import LeaderboardName from '../components/LeaderboardName';
 import colRef from '../firebase';
 import { getDocs } from 'firebase/firestore';
 import { motion } from 'framer-motion';
+import Lottie from 'lottie-react';
+import animationData from '../images/201-simple-loader.json'
 
 export default function Leaderboard() {
 
@@ -36,7 +38,7 @@ export default function Leaderboard() {
             <div className="margin">
                 <Navbar page="leaderboards" />
                 {finishedLoading ?
-                    <motion.div initial={{opacity: 0}} animate={{opacity: 1}}className="leaderboard-container">
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="leaderboard-container">
                         <div className="leaderboard-main">
                             <h1 className="congrats">CONGRATS</h1>
                             <div className="leaderboards-second-row">
@@ -59,7 +61,9 @@ export default function Leaderboard() {
                             </div>
                         </div>
                     </motion.div> :
-                    <></>
+                    <div className="loading">
+                        <Lottie animationData={animationData} loop={true} />
+                    </div>
                 }
             </div>
             <Footer />
