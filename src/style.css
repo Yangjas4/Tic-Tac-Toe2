@@ -554,3 +554,91 @@ input:focus {
 	margin-top: 35px;
 	cursor: pointer;
 }
+
+.endscreen-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 50px;
+}
+
+.submission-success {
+	font-weight: 600;
+	font-size: 40px;
+	margin-bottom: 20px;
+}
+
+.endscreen-buttons {
+	display: flex;
+	gap: 40px;
+	margin-top: 25px;
+	margin-bottom: 30px;
+}
+
+.play-again-button {
+	display: flex;
+	background: #492cff;
+	border-radius: 11px;
+	width: 185px;
+	height: 45px;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.endscreen-subtitle {
+	font-weight: 400;
+	font-size: 15px;
+	color: #969696;
+}
+
+.leaderboards-button > a {
+	text-decoration: none;
+	color: #492cff;
+}
+
+.leaderboards-button {
+	border-radius: 11px;
+	border: 1px solid #492cff;
+	width: 185px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.congrats {
+	color: #492cff;
+	font-weight: 700;
+	font-size: 105px;
+	margin-bottom: 0;
+	height: 110px;
+}
+
+.congrats-subheading {
+	width: 280px;
+	font-weight: 300;
+	font-size: 40px;
+	line-height: 100%;
+	letter-spacing: 0.05em;
+}
+
+.leaderboards-second-row {
+	display: flex;
+}
+
+.leaderboard-body {
+	margin-top: 30px;
+	width: 640px;
+	background: linear-gradient(90deg, #152331 0%, #000000 100%);
+	border-radius: 31px;
+	height: 350px;
+}
+
+.leaderboard-title {
+	font-weight: 500;
+	font-size: 30px;
+	line-height: 100%;
+}
+
+

@@ -4,6 +4,9 @@ import Square from './Square';
 import useSound from 'use-sound';
 import playerSfx from '../sounds/abs-confirm-1.mp3';
 import cpuSfx from '../sounds/abs-cancel-1.mp3';
+import colRef from '../firebase';
+import { addDoc } from 'firebase/firestore';
+import { Link } from 'react-router-dom';
 
 const topDown = {
     hidden: {
@@ -17,7 +20,7 @@ const topDown = {
             duration: 2,
         }
     }
-}
+};
 const bottomUp = {
     hidden: {
         opacity: 0,
@@ -30,7 +33,7 @@ const bottomUp = {
             duration: 2,
         }
     }
-}
+};
 const fadeIn = {
     hidden: {
         opacity: 0
@@ -41,7 +44,18 @@ const fadeIn = {
             duration: 1
         }
     }
-}
+};
+
+const drawCheck = {
+    hidden: { pathLength: 0, opacity: 0 },
+    visible: {
+        opacity: 1,
+        pathLength: 1,
+        transition: {
+            duration: 1
+        }
+    }
+};
 
 export default function Gamesingle() {
     console.log("%cRerendered", "color: yellow")
@@ -174,6 +188,11 @@ export default function Gamesingle() {
             }
         }, 1500);
     }, [playerTurn])
+
+    // useEffect(() => {
+    //     db.collection('leaderboards').onSnapshot(snapshot => {
+    //     })
+    // }, [])
 
     function checkWin() {
         const wincheckArray = squaresArray.map(square => {
@@ -320,6 +339,24 @@ export default function Gamesingle() {
 
     function handleSubmit() {
         console.log("%cName Submitted", "color: green")
+        addDoc(colRef, {
+            name: nickname,
+            winstreak: winstreak
+        })
+            .then(gotoEndscreen());
+    }
+
+    function gotoEndscreen() {
+        setEndScreen(true);
+    }
+
+    function playAgain() {
+        setWinstreak(0);
+        setisGameOver(false);
+        setNickname("");
+        setEndScreen(false);
+        setPlayerTurn(true);
+        setSquaresArray(initSquares);
     }
 
     return (
@@ -360,7 +397,7 @@ export default function Gamesingle() {
                     {!endscreen && <div className="modal-content">
                         <h1 className="game-over-title"><span className="blueNoTyping">GAME</span>_OVER</h1>
                         <div className="game-over-subtitles">
-                            <p className="game-over-subtitle-final-win">Your final winstreak is: <span className="win-number">10</span></p>
+                            <p className="game-over-subtitle-final-win">Your final winstreak is: <span className="win-number">{winstreak}</span></p>
                             <p className="game-over-subtitle-final-win">Please enter your name for a spot on the leaderboards</p>
                             <div className="input-name">
                                 <input
@@ -375,6 +412,18 @@ export default function Gamesingle() {
                                 <motion.div className="submit-name" whileHover={{ scale: 1.1 }} onClick={handleSubmit}><p>Submit</p></motion.div>
                             </div>
                         </div>
+                    </div>}
+                    {endscreen && <div className="endscreen-content">
+                        <h1 className="submission-success"><span className="blueNoTyping">SUBMISSION</span>_SUCCESSFUL</h1>
+                        <motion.svg inital={{ scale: 0 }} animate={{ scale: 1}} width="111" height="111" viewBox="0 0 111 111" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <motion.path fill-rule="evenodd" clip-rule="evenodd" d="M55.5 4.625C27.4031 4.625 4.625 27.4031 4.625 55.5C4.625 83.5969 27.4031 106.375 55.5 106.375C83.5969 106.375 106.375 83.5969 106.375 55.5C106.375 27.4031 83.5969 4.625 55.5 4.625ZM77.552 46.8975C77.9581 46.4333 78.2672 45.8927 78.4612 45.3073C78.6552 44.7219 78.7302 44.1036 78.6818 43.4888C78.6333 42.874 78.4624 42.2751 78.179 41.7273C77.8957 41.1796 77.5057 40.694 77.0319 40.2992C76.5581 39.9044 76.0102 39.6083 75.4203 39.4284C74.8305 39.2485 74.2105 39.1884 73.5971 39.2516C72.9836 39.3148 72.389 39.5 71.8482 39.7964C71.3074 40.0928 70.8313 40.4944 70.448 40.9775L50.5605 64.8379L40.2699 54.5426C39.3976 53.7001 38.2293 53.234 37.0166 53.2445C35.804 53.255 34.644 53.7415 33.7865 54.599C32.929 55.4565 32.4425 56.6165 32.432 57.8291C32.4215 59.0418 32.8876 60.2101 33.7301 61.0824L47.6051 74.9574C48.0596 75.4115 48.6036 75.766 49.2027 75.9983C49.8017 76.2305 50.4426 76.3354 51.0844 76.3063C51.7262 76.2771 52.3549 76.1145 52.9304 75.8289C53.5059 75.5434 54.0156 75.141 54.427 74.6475L77.552 46.8975Z" fill="white" />
+                        </motion.svg>
+                        <div className="endscreen-buttons">
+                            <motion.div whileHover={{ scale: 1.1 }} className="play-again-button" onClick={playAgain}>PLAY AGAIN</motion.div>
+                            <motion.div whileHover={{ scale: 1.1 }} className="leaderboards-button"><Link to="/leaderboards">LEADERBOARDS</Link></motion.div>
+                        </div>
+                        <p className="endscreen-subtitle">Play again or visit the leaderboards!</p>
+
                     </div>}
                 </motion.div>}
             </AnimatePresence>
