@@ -46,17 +46,6 @@ const fadeIn = {
     }
 };
 
-const drawCheck = {
-    hidden: { pathLength: 0, opacity: 0 },
-    visible: {
-        opacity: 1,
-        pathLength: 1,
-        transition: {
-            duration: 1
-        }
-    }
-};
-
 export default function Gamesingle() {
     console.log("%cRerendered", "color: yellow")
     const initSquares = [
@@ -420,7 +409,7 @@ export default function Gamesingle() {
                         </motion.svg>
                         <div className="endscreen-buttons">
                             <motion.div whileHover={{ scale: 1.1 }} className="play-again-button" onClick={playAgain}>PLAY AGAIN</motion.div>
-                            <motion.div whileHover={{ scale: 1.1 }} className="leaderboards-button"><Link to="/leaderboards">LEADERBOARDS</Link></motion.div>
+                            <motion.div whileHover={{ scale: 1.1 }} className="leaderboards-button"><Link to="/leaderboard">LEADERBOARDS</Link></motion.div>
                         </div>
                         <p className="endscreen-subtitle">Play again or visit the leaderboards!</p>
 
