@@ -15,17 +15,5 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 const db = getFirestore()
 const colRef = collection(db, 'leaderboards');
-getDocs(colRef) 
-  .then(snapshot => {
-    const leaderboardsNames = snapshot.docs.map(doc => {
-      return {
-        ...doc.data(), id: doc.id
-      }
-    })
-    console.log(leaderboardsNames)
-  })
-  .catch(err => {
-    console.log(`%cError: ${err.message}`,"color:red");
-  })
 
 export default colRef;
