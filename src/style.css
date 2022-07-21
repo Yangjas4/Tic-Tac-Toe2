@@ -636,9 +636,68 @@ input:focus {
 }
 
 .leaderboard-title {
-	font-weight: 500;
-	font-size: 30px;
+	font-weight: 475;
+	font-size: 45px;
 	line-height: 100%;
+	margin-left: 20px;
+	width: 500px;
+	margin-top: 25px;
+	margin-bottom: 25px;
 }
 
+.leaderboard-main {
+	width: 930px;
+}
+
+.leaderboard-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+@media all and (min-height: 800px) {
+	.leaderboard-container {
+		margin-top: 90px;
+	}
+}
+
+.leaderboard-table {
+	width: 330px;
+}
+
+th {
+	font-weight: 400;
+}
+
+td {
+	text-align: center;
+	font-weight: 300;
+	padding-top: 5px;
+}
+
+.rank {
+	font-weight: 700;
+}
+
+.first-place {
+	background: linear-gradient(90deg, #ffb347 0%, #ffcc33 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+.second-place {
+	background: linear-gradient(90deg, #403b4a 0%, #e7e9bb 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+.third-place {
+	background: linear-gradient(90deg, #603813 0%, #b29f94 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
 
