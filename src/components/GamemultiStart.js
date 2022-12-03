@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
-export default function GamesingleStart() {
+export default function GamesingleStart(props) {
     const [showRules, setShowRules] = useState(false);
 
     function toggleRules() {
@@ -12,11 +13,25 @@ export default function GamesingleStart() {
             <h1 className="game-title">
                 {">"} TIC_TAC_TOE <br /><span className="blueNoTyping">MULTIPLAYER</span>
             </h1>
-            <div className="start-game">START GAME</div>
+            <motion.div className="start-game" onClick={props.playgame} whileHover={{ scale: 1.1 }}>START GAME</motion.div>
             <h3 className="rules" onClick={toggleRules}>Rules</h3>
-            {showRules && <div className="rules-text">
-                <p className="rules-p"><span className="bold">Rules:</span> In this game, you will take turns placing symbols on a 3 by 3 grid. When a player connects 3 of their symbols in any horizontal, vertical or diagonal line they will win the round. Play continuosly against the CPU until you lose or draw. Players with the highest winstreaks will be featured on the leaderboards! GLHF!</p>
-            </div>}
+            <AnimatePresence>
+                {showRules &&
+                    <motion.div
+                        exit={{ opacity: 0 }}
+                        className="rules-text">
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            whileHover={{ scale: 1.3 }}
+                            whileTap={{ scale: 1.3 }}
+                            className="rules-p"><span className="bold">Rules (Hover to Zoom in):</span> In this game, you
+                            will take turns placing symbols on a 3 by 3 grid. When a player connects 3 of their
+                            symbols in any horizontal, vertical or diagonal line they will win the round.
+                            Play continuosly against the CPU until you lose or draw. Players with the highest
+                            winstreaks will be featured on the leaderboards! GLHF!</motion.p>
+                    </motion.div>}
+            </AnimatePresence>
         </div>
     )
 }
