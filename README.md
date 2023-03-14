@@ -1,6 +1,6 @@
 # Firebase
 
-This project is deployed at https://yangjas4-tictactoe.web.app/
+This project is deployed at https://tictactoe-80221.web.app/
 
 # Getting Started with Create React App
 
